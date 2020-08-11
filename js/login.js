@@ -4,16 +4,15 @@
 document.addEventListener("DOMContentLoaded", function(e){
 });
 
-function login() {
+function login(){
 var x = document.forms['formulario']['nombre'].value;
 if (x == '') {
-    alert('Introduzca Usuario')
-    return false
+    alert('Introduzca Usuario');
+    return false;
 }
-
 var y = document.forms['formulario']['contrasenia'].value;
 if (y == '') {
-    alert('Introduzca Contraseña')
-    return false
+    alert('Introduzca Contraseña');
+    return false;
 }
 }
