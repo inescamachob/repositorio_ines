@@ -75,12 +75,12 @@
     <h2>Log in</h2> <br>
     <form id='formulario'>
     <label for="nombre" style='font-size: larger;'> Usuario: </label> <br>
-    <input type='text' name='nombre' id='nombre' maxlength="30" minlength="8">
+    <input type='text' name='nombre' id='nombre'>
     <label for="contrasenia" style='font-size: larger;'> Contraseña: </label> <br>
-    <input type='password' name='contrasenia' id='contrasenia'  maxlength="30" minlength="8">
+    <input type='password' name='contrasenia' id='contrasenia'>
     <h6 id="errorusuario"></h6> 
     <h6 id="errorcontrasenia"></h6> 
-    <button id='boton' type="submit" onclick="login()">Enviar</button>
+    <button id='boton' type="submit" onclick=" login(), inicio()">Enviar</button>
     </form>
   </div>
   </div>
