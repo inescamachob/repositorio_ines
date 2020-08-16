@@ -8,21 +8,33 @@ function login(){
     var x = document.forms['formulario']['nombre'].value;
     var error = document.getElementById('errorusuario');
     if (x == '') {
-     error.innerHTML = 'Introduzca Usuario';
-     return false
+        return error.innerHTML = 'Introduzca Usuario';
     }
     var y = document.forms['formulario']['contrasenia'].value;
     var errorcontrasenia = document.getElementById('errorcontrasenia');
     if (y == '') {
-     errorcontrasenia.innerHTML = 'Introduzca Contraseña';
-     return false
+        return errorcontrasenia.innerHTML = 'Introduzca Contraseña';
     }
     }
 
+function validacionx(){
+    var x = document.forms['formulario']['nombre'].value;
+    if (x !== '' || x !== null) {
+     return true
+    }
+    }
+function validaciony(){
+    var y = document.forms['formulario']['contrasenia'].value;
+    if(y !== '' || y !== null){
+        return true
+    }
+}
 
-/*function inicio() {
-    location.replace('https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_redirect_webpage')
-}*/
+function inicio(){
+        if(validacionx() && validaciony()){
+        return window.location.href = 'indexreal.html';
+        }
+    }
 
 /*function login(){
 var x = document.forms['formulario']['nombre'].value;
