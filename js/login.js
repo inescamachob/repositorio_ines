@@ -11,28 +11,28 @@ function login(){
         return error.innerHTML = 'Introduzca Usuario';
     }
     var y = document.forms['formulario']['contrasenia'].value;
-    var errorcontrasenia = document.getElementById('errorcontrasenia');
     if (y == '') {
-        return errorcontrasenia.innerHTML = 'Introduzca Contraseña';
+        return error.innerHTML = 'Introduzca Contraseña';
     }
     }
 
 function validacionx(){
     var x = document.forms['formulario']['nombre'].value;
-    if (x !== '' || x !== null) {
+    if (x !== '') {
      return true
     }
     }
+    
 function validaciony(){
     var y = document.forms['formulario']['contrasenia'].value;
-    if(y !== '' || y !== null){
+    if(y !== ''){
         return true
     }
 }
 
 function inicio(){
         if(validacionx() && validaciony()){
-        return window.location.href = 'indexreal.html';
+        return location.href = 'indexreal.html';
         }
     }
 
