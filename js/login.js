@@ -30,11 +30,16 @@ function validaciony(){
     }
 }
 
+miStorage = window.sessionStorage;
+
 function inicio(){
+    var nombre = document.getElementById('nombre').value;
+        sessionStorage.setItem('Keynombre', nombre);
         if(validacionx() && validaciony()){
         return location.href = 'indexreal.html';
         }
     }
+
 
 /*function login(){
 var x = document.forms['formulario']['nombre'].value;
