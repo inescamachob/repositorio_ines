@@ -41,7 +41,8 @@ function showCategoriesList(array) {
         }
     })
 });*/
-
+document.addEventListener('DOMContentLoaded', function(e) {
+    document.getElementById('storage_p').innerHTML = miStorage.getItem('Keynombre') });
 
 const ORDER_ASC_BY_PRICE = "ASC";
 const ORDER_DESC_BY_PRICE = "DESC";

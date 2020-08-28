@@ -1,3 +1,6 @@
+document.addEventListener('DOMContentLoaded', function(e) {
+    document.getElementById('storage_c').innerHTML = miStorage.getItem('Keynombre') });
+
 const ORDER_ASC_BY_NAME = "AZ";
 const ORDER_DESC_BY_NAME = "ZA";
 const ORDER_BY_PROD_COUNT = "Cant.";

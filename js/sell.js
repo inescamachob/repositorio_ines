@@ -1,3 +1,6 @@
+document.addEventListener('DOMContentLoaded', function(e) {
+    document.getElementById('storage_sell').innerHTML = miStorage.getItem('Keynombre') });
+
 let productCost = 0;
 let productCount = 0;
 let comissionPercentage = 0.13;
