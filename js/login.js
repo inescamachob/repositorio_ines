@@ -8,10 +8,12 @@ function login(){
     var x = document.forms['formulario']['nombre'].value;
     var error = document.getElementById('errorusuario');
     if (x == '') {
+        document.getElementById('nombre').style.borderColor = 'red';
         return error.innerHTML = 'Introduzca Usuario';
     }
     var y = document.forms['formulario']['contrasenia'].value;
     if (y == '') {
+        document.getElementById('contrasenia').style.borderColor = 'red';
         return error.innerHTML = 'Introduzca Contraseña';
     }
     }
