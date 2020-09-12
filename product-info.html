@@ -13,6 +13,7 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -26,20 +27,115 @@
     </div>
   </nav>
   <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 3 (Fecha de entrega: 13/09/2020) y Entrega 4 (Fecha de entrega: 20/09/2020).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+    <div>
+      <h3 id="productName"></h3>
+      <hr class="my-3">
+      <dl>
+        <dt>Descripción</dt>
+        <br>
+        <dd>
+          <p id="productDescription"></p>
+        </dd>
+
+        
+        <dt>Precio</dt>
+        <dd>
+          <small id="productCurrency"></small>
+          <small id="productCost"></small>
+        </dd>
+
+        <dt>Cantidad de productos </dt>
+        <dd>
+          <small id="productSoldCount"></small>
+        </dd>
+
+        <dt>Categorías</dt>
+        <dd>
+          <small id="productCategory"></small>
+        </dd>
+
+        <dt>Imágenes ilustrativas</dt>
+        <dd>
+          <div class="row text-center text-lg-left pt-2" id="productImagesGallery">
+          </div>
+        </dd>
+
+        <dt>Comentarios</dt>
+        <dd>
+          <p id="score"></p>
+        </dd>
+      </dl>
+      <hr class="my-3">
+      <br>
+      <div>
+        <style>
+         #form {
+            width: 250px;
+            margin: 0 auto;
+            height: 50px;
+                }
+
+          #form label {
+              font-size: 20px;
+            }
+
+            #form {
+                text-align: right;
+            }
+
+          input[type="radio"] {
+            display: none;
+                    }
+
+          label {
+            color: grey;
+                }
+
+          .clasificacion {
+              direction: rtl;
+            unicode-bidi: bidi-override;
+                  }
+
+          label:hover,
+          label:hover ~ label {
+            color: rgb(248, 49, 35);
+              }
+
+          input[type="radio"]:checked ~ label {
+          color:  rgb(248, 49, 35);
+            }
+          </style>
+          
+          <h5>Ingresar comentario</h5>
+          <form>
+              <textarea type='text' class="form-control" name='comentarios' id='comentarios' placeholder="Ingrese aqui su comentario" maxlength="200"></textarea>
+              <p class="clasificacion" id="form">
+              <input id="radio1" type="radio" name="estrellas" value="5">
+              <label for="radio1">★</label>
+              <input id="radio2" type="radio" name="estrellas" value="4">
+              <label for="radio2">★</label>
+              <input id="radio3" type="radio" name="estrellas" value="3">
+              <label for="radio3">★</label>
+              <input id="radio4" type="radio" name="estrellas" value="2">
+              <label for="radio4">★</label>
+              <input id="radio5" type="radio" name="estrellas" value="1">
+              <label for="radio5">★ :Puntuacion </label>
+              </p>
+              <h6 id="comentarioenviado" style="color: green;"></h6>
+              <h6 id="comentarionoenviado" style="color: red;"></h6>
+              <h6 id="errorestrellas" style="color: red;"></h6>
+              <br>
+              <button id='boton' type="button" class="btn btn-danger btn-sm" onclick="enviado()"> Enviar </button>
+          </form>
+      </div>
     </div>
   </div>
   <footer class="text-muted">
     <div class="container">
       <p class="float-right">
-        <a href="#">Volver arriba</a>
+        <a href="#"></a>
       </p>
-      <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
-      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+      <p></p>
     </div>
   </footer>
   <div id="spinner-wrapper">
