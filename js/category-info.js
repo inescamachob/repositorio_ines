@@ -1,3 +1,6 @@
+document.addEventListener('DOMContentLoaded', function(e) {
+    document.getElementById('storage').innerHTML = miStorage.getItem('Keynombre') });
+
 var category = {};
 
 function showImagesGallery(array){

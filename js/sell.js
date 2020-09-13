@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function(e) {
-    document.getElementById('storage_sell').innerHTML = miStorage.getItem('Keynombre') });
+    document.getElementById('storage').innerHTML = miStorage.getItem('Keynombre') });
 
 let productCost = 0;
 let productCount = 0;
