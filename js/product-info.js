@@ -4,6 +4,8 @@
 document.addEventListener('DOMContentLoaded', function(e) {
     document.getElementById('storage').innerHTML = miStorage.getItem('Keynombre') });
 
+
+
 var product = {};
 
 function showProducts(array){
@@ -67,7 +69,7 @@ function showComment(array){
         <div class='container'>
           <div class="row">
             <div class="col-sm-1">
-            <img  style='margin-right: auto; margin-left: auto; display: block; max-width: 100%; height: auto; vertical-align: middle;' src="img/icono_login.jpg">
+            <img style='margin-right: auto; margin-left: auto; display: block; max-width: 100%; height: auto; vertical-align: middle;' src="img/icono_login.jpg">
             </div>
             <div class="col-sm-5">
             <strong>`+ comment.user + `</strong> <span class="text-muted" id='estrellas'> Puntuacion: ` + '' + comment.score + `</span>
@@ -137,9 +139,31 @@ function mensajes(){
         }
     }
 
-    function enviado() {
+
+
+function enviado() {
         var mensaje = document.getElementById('comentarioenviado');
+        var comentarionuevo = document.getElementById('comentarios').value;
+        let htmlContentToAppend = '';
         if (mensajes() && validarestrellas()) {
             mensaje.innerHTML = 'Tu comentario se envio correctamente';
+            htmlContentToAppend += `
+            <div class='container'>
+            <div class="row">
+              <div class="col-sm-1">
+              <img style='margin-right: auto; margin-left: auto; display: block; max-width: 100%; height: auto; vertical-align: middle;' src="img/icono_login.jpg">
+              </div>
+              <div class="col-sm-5">
+              <strong> User name</strong> <span class="text-muted"> Puntuacion:</span>
+              <div class="panel-body"> `+ comentarionuevo + ` 
+              <br>
+              <small class="text-muted"> Fecha:</small>
+              </div>
+              </div>
+            </div>
+          </div>`
         }
+        document.getElementById("nuevocomentario").innerHTML = htmlContentToAppend;
     }
+    
+
