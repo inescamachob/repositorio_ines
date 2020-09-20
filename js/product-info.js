@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function(e) {
     document.getElementById('storage').innerHTML = miStorage.getItem('Keynombre') });
 
 
-
 var product = {};
 
 function showProducts(array){
@@ -18,7 +17,7 @@ function showProducts(array){
         htmlContentToAppend += `
         <div class="col-lg-3 col-md-4 col-6">
             <div class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail" src="` + images + `" alt="">
+                <img class="img-fluid img-thumbnail zoom" src="` + images + `" alt="">
             </div>
         </div>
         `
@@ -99,6 +98,74 @@ document.addEventListener("DOMContentLoaded", function(e){
     });
 });
 
+relatedProducts = [];
+
+function ShowrelatedProduct(array){
+
+    let htmlContentToAppend = "";
+        let relatedProduct1 = array[1];
+        let relatedProduct3 = array[3];
+
+        htmlContentToAppend += `
+
+                    <div class="container text-center my-3">
+                    <div class="row mx-auto my-auto">
+                        <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel">
+                            <div class="carousel-inner w-100" role="listbox">
+                                <div class="carousel-item active">
+                                    <div class="col-md-4 mx-auto">
+                                        <div class="card card-body">
+                                            <img class="img-fluid" src="` +  relatedProduct1.imgSrc + `">
+                                            <h4 class="card-title">` + relatedProduct1.name + `</h4>
+                                            <p class="card-text">` +  relatedProduct1.currency + ' ' +  relatedProduct1.cost +`</p>
+                                            <p class="card-text">` +  relatedProduct1.description + `</p>
+                                            <a class="btn btn-danger btn-sm"" href='products.html'>Ver producto</a> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="col-md-4 mx-auto">
+                                        <div class="card card-body">
+                                        <img class="img-fluid" src="` +  relatedProduct3.imgSrc + `">
+                                        <h4 class="card-title">` + relatedProduct3.name + `</h4>
+                                        <p class="card-text">` +  relatedProduct3.currency + ' ' +  relatedProduct3.cost +`</p>
+                                        <p class="card-text">` +  relatedProduct3.description + `</p>
+                                        <a class="btn btn-danger btn-sm"" href='products.html'>Ver producto</a> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev w-auto" href="#recipeCarousel" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next w-auto" href="#recipeCarousel" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            `     
+            document.getElementById("relatedProducts-list").innerHTML = htmlContentToAppend;
+        }
+    
+        document.addEventListener("DOMContentLoaded", function(e){
+            getJSONData(PRODUCTS_URL).then(function(resultObj){
+                if (resultObj.status === "ok")
+                {
+                    relatedProducts = resultObj.data;
+        
+                    ShowrelatedProduct(relatedProducts);
+                }
+            });
+        });
+
+
+
 function mensajes(){
     var x = document.getElementById('comentarios').value;
     var mensaje = document.getElementById('comentarioenviado');
@@ -144,6 +211,7 @@ function mensajes(){
 function enviado() {
         var mensaje = document.getElementById('comentarioenviado');
         var comentarionuevo = document.getElementById('comentarios').value;
+        var usercomentario = miStorage.getItem('Keynombre');
         let htmlContentToAppend = '';
         if (mensajes() && validarestrellas()) {
             mensaje.innerHTML = 'Tu comentario se envio correctamente';
@@ -154,7 +222,7 @@ function enviado() {
               <img style='margin-right: auto; margin-left: auto; display: block; max-width: 100%; height: auto; vertical-align: middle;' src="img/icono_login.jpg">
               </div>
               <div class="col-sm-5">
-              <strong> User name</strong> <span class="text-muted"> Puntuacion:</span>
+              <strong >`+ usercomentario + `  </strong> <span class="text-muted"> Puntuacion:</span>
               <div class="panel-body"> `+ comentarionuevo + ` 
               <br>
               <small class="text-muted"> Fecha:</small>
@@ -166,4 +234,3 @@ function enviado() {
         document.getElementById("nuevocomentario").innerHTML = htmlContentToAppend;
     }
     
-

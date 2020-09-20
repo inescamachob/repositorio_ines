@@ -12,6 +12,10 @@ miStorage = window.sessionStorage;
 document.addEventListener('DOMContentLoaded', function(e) {
   document.getElementById('storage').innerHTML = miStorage.getItem('Keynombre') });
 
+function cerrarsesion() {
+  miStorage.removeItem("Keynombre")
+}
+
 var showSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "block";
 }
