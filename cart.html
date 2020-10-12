@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- saved from url=(0049)https://getbootstrap.com/docs/4.3/examples/album/ -->
 <html lang="en">
 
 <head>
@@ -11,6 +10,7 @@
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <style>
     .bd-placeholder-img {
@@ -55,14 +55,61 @@
       </div>
     </div>
   </nav>
+  <div class="text-center p-4">
+    <h2>Mi carrito</h2>
+   <!-- <a href="categories.html" class="lead"> Agregar mas productos a mi carrito</a> -->
+</div>
   <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 5 (Fecha de entrega: 11/10/2020) y Entrega 6 (Fecha de entrega: 25/10/2020).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+  <div id="show-cartList">
+  </div>
+  <h6 class="text-right">Sub-Total</h6> <p class ='mr-1 text-right' id='subt'></p>
+  <div class="mb-3">
+    <div class="pt-4">
+      <div class="form-group">
+        <label for="envio">Seleccione metodo de envio</label>
+        <select class="form-control" id="envio">
+          <option>Comun (15 a 20 días - Gratis)</option>
+          <option>Express (5 a 10 días - Costo adicional de $500)</option>
+          <option>Premium (3 días - Costo adicional de $1000)</option>
+        </select>
+      </div>
     </div>
   </div>
+  <div class="mb-3">
+    <div class="pt-4">
+
+      <h6 class="mb-4">Forma de pago</h6>
+      <label>
+        <input type="radio" name="tarjeta" value="small">
+        <img class="mr-2" width="45px" src="img/visa.png">
+      </label>
+      <label>
+        <input type="radio" name="tarjeta" value="small">
+        <img class="mr-2" width="45px" src="img/american.jpg">
+      </label>
+      <label>
+        <input type="radio" name="tarjeta" value="small">
+        <img class="mr-2" width="45px" src="img/master.png">
+      </label>
+      <label>
+        <input type="radio" name="tarjeta" value="small">
+        <img class="mr-2" width="45px" src="img/e-brou.png">
+      </label>
+    </div>
+  </div>
+    <br>
+  <div class="col mb-2">
+    <div class="row">
+        <div class="col-sm-12  col-md-6">
+            <a class="btn btn-block btn-light" href="categories.html">Continuar comprando</a>
+        </div>
+        <div class="col-sm-12 col-md-6 text-right">
+            <button class="btn btn-lg btn-block btn-success text-uppercase">Checkout</button>
+        </div>
+      </div>
+  </div>
+</div>
+ 
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
