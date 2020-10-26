@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
                                             <th scope="col">Producto</th>
                                             <th scope="col">Disponibilidad</th>
                                             <th scope="col" class="text-center">Cantidad</th>
-                                            <th scope="col" class="text-right">Precio</th>
+                                            <th scope="col" class="text-right">Precio unitario</th>
                                             <th> </th>
                                         </tr>
                                     </thead>
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
                                             <td>` + articles.name + `</td>
                                             <td>En stock</td>
                                             <td>
-                                            <select name='cantidad' id='cantidad' onchange='subtotal()'>
+                                            <select name='cantidad' id='cantidad' onchange='subtotal();'>
                                             <option>` +  articles.count + `</option>
                                             <option value='0'>0</option>
                                             <option value='1'>1</option>
@@ -58,6 +58,14 @@ document.addEventListener('DOMContentLoaded', function(e) {
                                             <td class="text-right">` + articles.currency + ' '+ `<span name='costo'> `+ articles.unitCost + `</span></td>
                                             <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
                                         </tr>
+                                        <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td class='text-right'>Total por producto</td>
+                                        <td class="text-right" id='totalproducto`+i+`'></td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -67,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
                         `
             document.getElementById("show-cartList").innerHTML = htmlContentToAppend;
         }
-        subtotal();
+         subtotal(); 
     }
 
 
@@ -78,14 +86,34 @@ document.addEventListener('DOMContentLoaded', function(e) {
 
         for(i = 0; i < valor.length; i++) {
             st += parseInt(valor[i].value) * parseInt(costo[i].innerHTML);
+            document.getElementById('totalproducto'+i).innerHTML = 'UYU' + ' ' + parseInt(valor[i].value) * parseInt(costo[i].innerHTML);
+         }
+
+        document.getElementById('subtotal').innerHTML = st;
+        document.getElementById('total').innerHTML = '';
+        document.getElementById('precioenvio').innerHTML = '';
+        $('#envio').val([0]);
         }
 
-        document.getElementById('subt').innerHTML = st;
-    }
+    function envio(valorenvio){
+        if (valorenvio == 1){
+                env = parseInt(document.getElementById('subtotal').innerHTML) * 0.05;
+                return document.getElementById('precioenvio').innerHTML = env;
+            }
+            else {
+                if (valorenvio == 2){
+                    env = parseInt(document.getElementById('subtotal').innerHTML) * 0.07;
+                    return document.getElementById('precioenvio').innerHTML = env;
+                }
+                else {
+                    if (valorenvio == 3){
+                        env = parseInt(document.getElementById('subtotal').innerHTML) * 0.15;
+                        return document.getElementById('precioenvio').innerHTML = env;
+                    }
+                }
+            }
+        }
 
-   /* function muestraSubtotal(){
-        window.open(subtotal(st));
-    }*/
 
     document.addEventListener("DOMContentLoaded", function(e){
         getJSONData(CART_DESAFIATE_URL).then(function(resultObj){
@@ -99,19 +127,120 @@ document.addEventListener('DOMContentLoaded', function(e) {
     });
 
 
-   /* function subtotal(valor , precio) {
-       st = (valor * precio);
-        return st;
+    function validar(){
+        var x = document.getElementById('envio').value;
+        var errorenvio = document.getElementById('errorenvio');
+        if (x == 0) {
+            document.getElementById('envio').style.borderColor = 'red';
+            errorenvio.innerHTML = 'Debe seleccionar metodo de envio'; 
+            return false
+        }
+        else {
+            x != 0;
+            document.getElementById('envio').style.borderColor = 'green';
+            errorenvio.innerHTML = '';  
+            return true
+        }
+      }
 
 
-        function subtotal(valor, costo){
-        
-        var st = valor * costo;
+      $(document).ready(function(){
+        $("#show").click(function(){
+          $("#staticBackdrop").modal('show');
+        });
+        });
 
-        document.getElementById('subt').innerHTML = st;
+
+        function validarpago() {
+        var pago = document.getElementsByName('tarjeta');
+        var errorformadepago = document.getElementById('errorformadepago');
+        var valido = false;
+        var i = 0;
+    
+        while (!valido && i < pago.length) {
+            if (pago[i].checked) {
+            valido = true;
+            }
+            i++;        
+        }
+        if (!valido) {
+            errorformadepago.innerHTML = 'Debe seleccionar forma de pago';
+            return valido;
+            }
+        else {
+            errorformadepago.innerHTML = '';
+            return valido
+            }
+        }
+       
+        function validardatos() {
+            var nombretarjeta = document.forms['infotarjeta']['nombre'].value;
+            var numerotarjeta = document.forms['infotarjeta']['numerotarjeta'].value;
+            var fechatarjeta = document.forms['infotarjeta']['fechatarjeta'].value;
+            var cvv = document.forms['infotarjeta']['cvv'].value;
+            var errortarjeta = document.getElementById('errortarjeta');
+            if (nombretarjeta !== '') {
+                document.getElementById('nombre').style.borderColor = 'green';
+                errortarjeta.innerHTML = '';
+            }
+            else {
+                errortarjeta.innerHTML = 'Debe ingresar nombre';
+                document.getElementById('nombre').style.borderColor = 'red'; 
+            }
+            if (nombretarjeta !== '' && numerotarjeta == '') {
+                document.getElementById('numerotarjeta').style.borderColor = 'red';
+                errortarjeta.innerHTML = 'Debe ingresar numero'; 
+                
+            }
+            else { 
+                if (nombretarjeta !== '' && numerotarjeta !== ''){
+                    document.getElementById('numerotarjeta').style.borderColor = 'green';
+                    errortarjeta.innerHTML = '';
+            }
+            }
+            if (nombretarjeta !== '' && numerotarjeta !== '' && fechatarjeta == '') {
+                document.getElementById('fechatarjeta').style.borderColor = 'red';
+                errortarjeta.innerHTML = 'Debe ingresar fecha de vencimiento'; 
+                
+            }
+            else { 
+                if (nombretarjeta !== '' && numerotarjeta !== '' && fechatarjeta !== ''){
+                    document.getElementById('fechatarjeta').style.borderColor = 'green';
+                    errortarjeta.innerHTML = '';
+            }
+            }
+            if (nombretarjeta !== '' && numerotarjeta !== '' && fechatarjeta !== '' && cvv == '') {
+                document.getElementById('cvv').style.borderColor = 'red';
+                errortarjeta.innerHTML = 'Debe ingresar cvv'; 
+                
+            }
+            else { 
+                if (nombretarjeta !== '' && numerotarjeta !== '' && fechatarjeta !== '' && cvv !== ''){
+                    document.getElementById('cvv').style.borderColor = 'green';
+                    errortarjeta.innerHTML = '';
+                    return true
+            }
+            }
+        }
+
+function validartodo() {
+    if(validardatos() && validarpago()){
+        $("#staticBackdrop").modal('hide');
     }
+    return true
+}
 
-    }*/
+function total() {
+    var suma = parseInt(document.getElementById('subtotal').innerHTML) + parseInt(document.getElementById('precioenvio').innerHTML);
+    document.getElementById('total').innerHTML = suma;
+}
 
-
-   
+function checkout(){
+    var errorcheckout = document.getElementById('errorcheckout');
+    if(validardatos() && validarpago() &&validar()){
+        window.location.href = 'cart_checkout.html';
+    }
+    else {
+        errorcheckout.innerHTML = 'Debe seleccionar forma de pago'; 
+    }
+}

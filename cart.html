@@ -62,53 +62,129 @@
   <div class="container p-5">
   <div id="show-cartList">
   </div>
-  <h6 class="text-right">Sub-Total</h6> <p class ='mr-1 text-right' id='subt'></p>
   <div class="mb-3">
     <div class="pt-4">
       <div class="form-group">
         <label for="envio">Seleccione metodo de envio</label>
-        <select class="form-control" id="envio">
-          <option>Comun (15 a 20 días - Gratis)</option>
-          <option>Express (5 a 10 días - Costo adicional de $500)</option>
-          <option>Premium (3 días - Costo adicional de $1000)</option>
+        <select name="envio" class="form-control" id="envio" onclick="envio(this.value); total()">
+          <option disabled selected value="0">Selecciona una opción</option>
+          <option value="1">Standard (+5% del Subtotal)</option>
+          <option value="2">Express (+7% del Subtotal)</option>
+          <option value="3">Premium (+15% del Subtotal)</option>
         </select>
+        <br>
+        <h6 id="errorenvio" class="text-danger"></h6>
       </div>
     </div>
   </div>
-  <div class="mb-3">
-    <div class="pt-4">
+  <!-- Trigger modal -->
+      <button type="button" class="btn btn-light" id="show">
+        Seleccione forma de pago
+      </button>
 
-      <h6 class="mb-4">Forma de pago</h6>
-      <label>
-        <input type="radio" name="tarjeta" value="small">
-        <img class="mr-2" width="45px" src="img/visa.png">
-      </label>
-      <label>
-        <input type="radio" name="tarjeta" value="small">
-        <img class="mr-2" width="45px" src="img/american.jpg">
-      </label>
-      <label>
-        <input type="radio" name="tarjeta" value="small">
-        <img class="mr-2" width="45px" src="img/master.png">
-      </label>
-      <label>
-        <input type="radio" name="tarjeta" value="small">
-        <img class="mr-2" width="45px" src="img/e-brou.png">
-      </label>
-    </div>
-  </div>
+       <!-- Modal -->
+      <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">Forma de pago</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form name="form" id="formulario"> 
+              <label>
+                <img class="mr-2" width="45px" src="img/visa.png">
+                <input type="radio" name="tarjeta" value="small">
+              </label>
+              <label>
+                <img class="mr-2" width="45px" src="img/american.jpg">
+                <input type="radio" name="tarjeta" value="small">
+              </label>
+              <label>
+                <img class="mr-2" width="45px" src="img/master.png">
+                <input type="radio" name="tarjeta" value="small">
+              </label>
+              <label>
+                <img class="mr-2" width="45px" src="img/e-brou.png">
+                <input type="radio" name="tarjeta" value="small">
+              </label>
+            
+            </form>
+            <br>
+            <div class="wrapper">
+              <h6 class="text-uppercase">Informacion de pago</h6>
+              <form class="form mt-4" id="infotarjeta">
+                  <div class="form-group"> <label for="nombre">Nombre</label>
+                     <input type="text" class="form-control" name="nombre" id="nombre"  placeholder="Nombre y Apellido que figura en tarjeta"> </div>
+                  <div class="form-group"> <label for="numerotarjeta">Numero de tarjeta</label>
+                     <input type="text" name="numerotarjeta" id="numerotarjeta" class="form-control" step="4" placeholder="1234 4567 5869 1234" pattern="^[0-9].{15,}">
+                  </div>
+                  <div class="d-flex w-100">
+                      <div class="d-flex w-50 pr-sm-4">
+                          <div class="form-group"> <label for="fechatarjeta">Fecha de vencimiento</label> <input type="text" name="fechatarjeta" id="fechatarjeta" class="form-control" placeholder="10/2020"> </div>
+                      </div>
+                      <div class="d-flex w-50 pl-sm-5 pl-3">
+                          <div class="form-group"> <label for="cvv">CVV</label> <input type="password" name="cvv" id="cvv" class="form-control pr-5" maxlength="3" placeholder="123"> </div>
+                      </div>
+                  </div>
+              </form>
+          </div>
+            </div>
+            <div class="modal-footer">
+              <h6 id="errorformadepago" class="text-danger"></h6> 
+              <br>
+              <h6 id="errortarjeta" class="text-danger"></h6>
+              <button type="submit" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              <button type="submit" id="formadepagovalido" class="btn btn-primary" onclick='validarpago(); validardatos(); validartodo()'>Aceptar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <h6 id="errorcheckout" class="text-danger"></h6>
     <br>
+    <div class="row">
+      <div class="col-md-4 order-md-2 mb-4">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-muted">Resumen de compra</span>
+        </h4>
+        <ul class="list-group mb-3">
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+              <h6 class="my-0">Subtotal</h6>
+            </div>
+            <span class="text-muted" id='subtotal'></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+              <h6 class="my-0">Envio</h6>
+            </div>
+            <span class="text-muted" id='precioenvio'></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Total UYU</span>
+            <strong id='total'></strong>
+          </li>
+        </ul>
+      </div>
+      </div>
+    <!--<h6 class="text-right">Subtotal</h6> <span class ='mr-1' id='subtotal'></span>
+    <h6 class="text-right">Envio</h6> <span class ='mr-1 text-right'id='precioenvio' ></span>
+    <h6 class="text-right">Total</h6> <span class ='mr-1 text-right' id='total'></span> -->
   <div class="col mb-2">
     <div class="row">
         <div class="col-sm-12  col-md-6">
             <a class="btn btn-block btn-light" href="categories.html">Continuar comprando</a>
         </div>
         <div class="col-sm-12 col-md-6 text-right">
-            <button class="btn btn-lg btn-block btn-success text-uppercase">Checkout</button>
+            <button class="btn btn-lg btn-block btn-success text-uppercase" onclick="validar(); checkout()">Checkout</button>
         </div>
       </div>
   </div>
 </div>
+
  
   <div id="spinner-wrapper">
     <div class="lds-ring">
