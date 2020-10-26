@@ -42,7 +42,6 @@ document.addEventListener('DOMContentLoaded', function(e) {
                                             <td>
                                             <select name='cantidad' id='cantidad' onchange='subtotal();'>
                                             <option>` +  articles.count + `</option>
-                                            <option value='0'>0</option>
                                             <option value='1'>1</option>
                                             <option value='2'>2</option>
                                             <option value='3'>3</option>
