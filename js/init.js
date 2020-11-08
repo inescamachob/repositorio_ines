@@ -11,10 +11,13 @@ const CART_DESAFIATE_URL = 'https://japdevdep.github.io/ecommerce-api/cart/654.j
 miStorage = window.sessionStorage;
 
 document.addEventListener('DOMContentLoaded', function(e) {
-  document.getElementById('storage').innerHTML = miStorage.getItem('Keynombre') });
+  document.getElementById('storage').innerHTML = miStorage.getItem('Keynombre') 
+
+});
 
 function cerrarsesion() {
   miStorage.removeItem("Keynombre")
+  //localst.removeItem('keyDatosPerfil')
 }
 
 var showSpinner = function(){

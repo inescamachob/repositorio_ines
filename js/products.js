@@ -92,21 +92,18 @@ function showProductsList(){
             ((maxCount == undefined) || (maxCount != undefined && parseInt(product.cost) <= maxCount))){
 
         htmlContentToAppend += `
-        <a href = 'product-info.html' class="list-group-item list-group-item-action">
-            <div class="row " id="` + product.name + `"> 
-                <div class="col-3">
-                    <img src="` + product.imgSrc + `" alt="` + product.description + `" class="img-thumbnail">
-                </div>
-                <div class="col">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h4 class="mb-1">` + product.name + `</h4>
-                        <small class="text-muted"> Precio: ` + product.currency + ' ' + product.cost +`</small>
-                    </div>
-                    <div> ` + product.description + `</div>
-                    <div> Cantidad vendidos: ` + product.soldCount + `</div>
-                </div>
-            </div>
+        <a href = 'product-info.html' class="col-md-3 list-group-item list-group-item-action">
+        <div class="card mb-3 h-100 shadow-sm">
+          <img class="bd-placeholder-img card-img-top"  src="` + product.imgSrc + `"> 
+          <h3 class="m-3">` + product.name + `</h3>           
+          <div class="card-body">
+              <p class="card-text">` + product.description + `</p>
+              <p class="text-muted">Precio: ` + product.currency + ' ' + product.cost +`</p>
+              <p class="text-muted">Cantidad vendidos: ` + product.soldCount + `</p>
+             </div>
         </div>
+        </a>
+    
         `
             }        
         document.getElementById("prod-list-container").innerHTML = htmlContentToAppend;
@@ -181,3 +178,19 @@ document.addEventListener("DOMContentLoaded", function(e){
         showProductsList();
     });
 });
+
+/*<a href = 'product-info.html' class="list-group-item list-group-item-action">
+            <div class="row " id="` + product.name + `"> 
+                <div class="col-3">
+                    <img src="` + product.imgSrc + `" alt="` + product.description + `" class="img-thumbnail">
+                </div>
+                <div class="col">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h4 class="mb-1">` + product.name + `</h4>
+                        <small class="text-muted"> Precio: ` + product.currency + ' ' + product.cost +`</small>
+                    </div>
+                    <div> ` + product.description + `</div>
+                    <div> Cantidad vendidos: ` + product.soldCount + `</div>
+                </div>
+            </div>
+        </div>*/

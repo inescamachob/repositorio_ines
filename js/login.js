@@ -4,6 +4,7 @@
 //document.addEventListener("DOMContentLoaded", function(e) {
 //});
 
+//funcion que muestra errores al no validar
 function login(){
     var x = document.forms['formulario']['nombre'].value;
     var error = document.getElementById('errorusuario');
@@ -17,14 +18,14 @@ function login(){
         return error.innerHTML = 'Introduzca Contraseña';
     }
     }
-
+//funcion que valida nombre
 function validacionx(){
     var x = document.forms['formulario']['nombre'].value;
     if (x !== '') {
      return true
     }
     }
-    
+ //funcion para validar contrasena   
 function validaciony(){
     var y = document.forms['formulario']['contrasenia'].value;
     if(y !== ''){

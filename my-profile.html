@@ -55,14 +55,81 @@
       </div>
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 7 (Fecha de entrega: 8/11/202020) -> Punto 1 y 2.</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+  <hr>
+<div class="container">
+    <div class="row">
+  		<div class="col-sm-3 text-center"><h3 id="storageperfil"></h3></div>
     </div>
-  </div>
+    <div class="row">
+  		<div class="col-sm-3"><!-- col izquierda-->
+        <div class="text-center">
+        <img src="img/icono_login.jpg" class="avatar img-circle img-thumbnail" alt="avatar">
+        <br> <hr>
+        <h6>Seleccione foto de perfil</h6> 
+        <input type="file" class="text-center file-upload">
+      </div>
+      <br><hr>
+    <ul class="list-group">
+      <li class="list-group-item text-center"><span class="pull-left"><strong>Compras:</strong></span> 10</li>
+      <li class="list-group-item text-center"><span class="pull-left"><strong>Ventas:</strong></span> 3</li>
+      <li class="list-group-item text-center"><span class="pull-left"><strong>Comentarios:</strong></span> 15</li>
+      <li class="list-group-item text-center"><span class="pull-left"><strong>Calificacion del usuario:</strong></span> ★★★★ </li>
+    </ul> 
+
+      </div><!--/col izquierda-->
+    	<div class="col-sm-9">
+            <h4>Mi Perfil</h4> 
+          <div class="tab-content">
+            <div class="tab-pane active" id="home">
+                <hr>
+                <form>
+                <ul class="list-group">
+                  <li class="list-group-item text-left"><span class="pull-left"><strong>Nombre</strong></span> <br>
+                    <input type="text" class="form-control" name="nombrePerfil" id="nombrePerfil" placeholder="Ingrese su nombre" title="Ingrese su nombre" disabled>
+                    <br>
+                    <span class="pull-left text-danger" id="errornombre"></span>
+                  </li>
+                  <li class="list-group-item text-left"><span class="pull-left"><strong>Apellido</strong></span> <br>
+                    <input type="text" class="form-control" name="apellidoPerfil" id="apellidoPerfil" placeholder="Ingrese su apellido" title="Ingrese su apellido" disabled>
+                    <br>
+                    <span class="pull-left text-danger" id="errorapellido"></span>
+                  </li>
+                  <li class="list-group-item text-left"><span class="pull-left"><strong>Edad</strong></span> <br>
+                    <input type="number" class="form-control" name="edad" id="edad" placeholder="Ingrese su edad" title="Ingrese su edad" maxlength="99" disabled>
+                    <br>
+                    <span class="pull-left text-danger" id="erroredad"></span>
+                  </li>
+                  <li class="list-group-item text-left"><span class="pull-left"><strong>Numero de contacto</strong></span> <br>
+                    <input type="text" class="form-control" name="telefono" id="telefono" placeholder="Ingrese numero de contacto" title="Ingrese numero de contacto" maxlength="9" disabled>
+                    <br>
+                    <span class="pull-left text-danger" id="errortelefono"></span>
+                  </li>
+                  <li class="list-group-item text-left"><span class="pull-left"><strong>Email</strong></span> <br>
+                    <input type="email" class="form-control" name="email" id="email" placeholder="nombre@email.com" title="Ingrese su email" disabled>
+                    <br>
+                    <span class="pull-left text-danger" id="erroremail"></span>
+                  </li>
+                  <li class="list-group-item text-left"><span class="pull-left"><strong>Domicilio</strong></span> <br>
+                    <input type="text" class="form-control" id="direccion" placeholder="Ingrese direccion" title="Ingrese su direccion" disabled>
+                    <br>
+                    <span class="pull-left text-danger" id="errordireccion"></span>
+                  </li>
+                </ul> 
+                
+                <div class="form-group">
+                  <div class="col-xs-3 text-center">
+                    <br>
+                      <button class="btn btn-lg btn-info" type="button" onclick="editar()"> Editar datos</button>
+                      <button class="btn btn-lg btn-success" type="button" onclick="guardardatosperfil()"> Guardar</button>
+                      <button class="btn btn-lg btn-danger" type="reset" onclick="borrarDatos()"> Reset</button>
+                    </div>
+                  </div>
+                </form>
+            </div>
+          </div>
+      </div>
+    </div>
+</div>
   <footer class="text-muted bg-light">
     <div class="container">
       <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
